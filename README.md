@@ -1,10 +1,10 @@
-# CloudState js-chat sample application
+# CloudState java-chat sample application
 
-This is a sample application demoing using CloudState to build a chat application in Node.js.
+This is a sample application demoing using CloudState to build a chat application in Java.
 
 Currently, there's only one feature, user presence, but in future we will add chat room support, push notifications for chat messages, etc.
 
-The application has two components, a presence stateful function, which uses a vote CRDT to store whether a user is currently online or not, and a gateway, which is an express/ws application, that serves a UI.
+The application has two components, a presence stateful function, which uses a vote CRDT to store whether a user is currently online or not, and a gateway that serves a UI. The gateway is written in Node/express, and is shared with the js-chat sample application, source code can be found at http://github.com/cloudstateio/samples-js-chat.
 
 The UI is designed to allow connecting as multiple users in one browser window, this is for demonstration purposes, to make it straight forward to see real time interactions, serverside pushes etc, without needing to open many browser tabs.
 
@@ -16,7 +16,7 @@ The application can be run locally using Docker, without Kubernetes. To do this,
 docker run --rm -d -p 3000:3000 --name gateway \
   cloudstateio/samples-js-chat-gateway:latest
 docker run --rm -d --network container:gateway \
-  --name presence cloudstateio/samples-js-chat-presence:latest
+  --name presence cloudstateio/samples-java-chat-presence:latest
 docker run --rm -d --network container:gateway \
   --name proxy cloudstateio/cloudstate-proxy-dev-mode:latest
 ```
@@ -51,8 +51,8 @@ kubectl apply -n cloudstate -f https://github.com/cloudstateio/cloudstate/releas
 Now, you can install the gateway and the presence service by running the following:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/cloudstateio/samples-js-chat/master/deploy/presence.yaml
-kubectl apply -f https://raw.githubusercontent.com/cloudstateio/samples-js-chat/master/deploy/gateway.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudstateio/samples-java-chat/master/deploy/presence.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudstateio/samples-java-chat/master/deploy/gateway.yaml
 ```
 
 You may wish to scale the presence service up, to see that it works on multiple nodes:
@@ -61,4 +61,4 @@ You may wish to scale the presence service up, to see that it works on multiple 
 kubectl scale deploy/presence-deployment --replicas 3
 ```
 
-The only thing left to do now is set up ingress for the gateway. If using Istio, [this descriptor](https://raw.githubusercontent.com/cloudstateio/samples-js-chat/master/deploy/gateway-istio.yaml) provides a configuration, however it routes all requests from the default Istio ingress gateway to the js-chat gateway, and so is only suitable for demonstration purposes when js-chat is the only thing running in the Kubernetes cluster.
+The only thing left to do now is set up ingress for the gateway. If using Istio, [this descriptor](https://raw.githubusercontent.com/cloudstateio/samples-java-chat/master/deploy/gateway-istio.yaml) provides a configuration, however it routes all requests from the default Istio ingress gateway to the js-chat gateway, and so is only suitable for demonstration purposes when js-chat is the only thing running in the Kubernetes cluster.

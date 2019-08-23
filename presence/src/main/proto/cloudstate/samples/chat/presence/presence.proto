@@ -1,8 +1,11 @@
 syntax = "proto3";
 
-import "cloudstate/entitykey.proto";
+import "cloudstate/entity_key.proto";
 
 package cloudstate.samples.chat.presence;
+
+option java_package = "io.cloudstate.samples.chat.presence";
+option java_outer_classname = "PresenceProtos";
 
 message User {
     string name = 1 [(.cloudstate.entity_key) = true];

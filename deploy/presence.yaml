@@ -5,4 +5,4 @@ metadata:
   name: presence
 spec:
   containers:
-  - image: cloudstateio/samples-js-chat-presence:latest
+  - image: cloudstateio/samples-java-chat-presence:latest
