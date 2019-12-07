@@ -23,7 +23,7 @@ docker run --rm -d --network container:gateway \
 
 Now you can visit the app by going to http://localhost:3000 in your browser. You can view the logs of the precense stateful fuction by running `docker logs presence -f`.
 
-The above commands do the folowing:
+The above commands do the following:
 
 1. First the gateway is started, with port 3000 exposed on your host. The gateway is started first because it is what is exposing the port that it connects.
 2. Then the presence stateful function is started. It is configured to use the gateways network namespace.
@@ -45,8 +45,10 @@ To install CloudState, run the following:
 
 ```
 kubectl create namespace cloudstate
-kubectl apply -n cloudstate -f https://github.com/cloudstateio/cloudstate/releases/download/v0.4/cloudstate-0.4.yaml
+kubectl apply -n cloudstate -f https://github.com/cloudstateio/cloudstate/releases/download/v0.5.0/cloudstate-0.5.0.yaml
 ```
+
+:warning: The example above uses v0.5.0 but you can see the list of available Cloudstate releases on [the following page.](https://github.com/cloudstateio/cloudstate/releases)
 
 Now, you can install the gateway and the presence service by running the following:
 
