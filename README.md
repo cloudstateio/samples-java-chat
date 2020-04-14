@@ -21,7 +21,7 @@ Create cluster
 ````
 deploy/cluster/create-gke-cluster
 ````
-Install Istio. Istio release 1.4.7 is [here](https://github.com/istio/istio/releases/tag/1.4.7)
+Install Istio. Istio release 1.4.7 is [here](https://github.com/istio/istio/releases/tag/1.4.7).
 Go to the Istio directory and run following command:
 ````
 bin/istioctl manifest apply --set profile=default
@@ -29,8 +29,13 @@ bin/istioctl manifest apply --set profile=default
 To add Kiali and grafana run:
 
 ````
- bin/istioctl manifest apply --set values.grafana.enabled=true --set values.kiali.enabled=true
+bin/istioctl manifest apply --set values.grafana.enabled=true --set values.kiali.enabled=true
 ````
+If you can't access Kiali, run the [following](https://github.com/rootsongjc/cloud-native-sandbox/issues/2):
+````
+kubectl create secret generic kiali -n istio-system --from-literal=username=admin --from-literal=passphrase=admin
+````
+
 Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application
 ````
 kubectl label namespace default istio-injection=enabled
@@ -61,6 +66,7 @@ You may wish to scale the presence service up, to see that it works on multiple 
 
 ```
 kubectl scale deploy/presence-deployment --replicas 3
+kubectl scale deploy/friends-deployment --replicas 3
 ```
 Run 
 ````
@@ -69,3 +75,10 @@ kubectl get svc istio-ingressgateway -n istio-system
 to get external IP
 
 Go to `http://<externalIP>/pages/chat.html` and enjoy the show
+
+To access Kiali first install a virtual service
+````
+kubectl apply -f /Users/boris/Projects/samples-java-chat/deploy/kialiVirtualService.yaml
+````
+You should see something like this:
+![Kiali](images/kiali.png)
