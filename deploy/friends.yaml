@@ -1,0 +1,9 @@
+# Stateful service descriptor for the friends app
+apiVersion: cloudstate.io/v1alpha1
+kind: StatefulService
+metadata:
+  name: friends
+spec:
+  containers:
+  - image: lightbend/samples-java-chat-friends:latest
+    name: friends

@@ -1,0 +1,72 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: chat-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: chat
+spec:
+  gateways:
+    - chat-gateway
+  hosts:
+    - '*'
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: chat
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: friends
+spec:
+  gateways:
+    - chat-gateway
+  hosts:
+    - '*'
+  http:
+    - match:
+        - uri:
+            prefix: /cloudstate.samples.chat.friends.Friends/
+      route:
+        - destination:
+            host: friends
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: presence
+spec:
+  gateways:
+    - chat-gateway
+  hosts:
+    - '*'
+  http:
+    - match:
+        - uri:
+            prefix: /cloudstate.samples.chat.presence.Presence/
+      route:
+        - destination:
+            host: presence
+            port:
+              number: 80
+

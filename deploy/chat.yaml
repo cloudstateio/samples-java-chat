@@ -1,0 +1,9 @@
+# Stateful service descriptor for the gateway app
+apiVersion: cloudstate.io/v1alpha1
+kind: StatefulService
+metadata:
+  name: chat
+spec:
+  containers:
+    - image: lightbend/chat:latest
+      name: chat

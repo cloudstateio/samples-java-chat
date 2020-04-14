@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "cloudstate/entity_key.proto";
+
+package cloudstate.samples.chat.friends;
+
+option java_package = "io.cloudstate.samples.chat.friends";
+option java_outer_classname = "FriendsProtos";
+
+message Friend{
+    string user = 1;
+    string avatar = 2;
+}
+
+message FriendRequest {
+    string user = 1 [(.cloudstate.entity_key) = true];
+    Friend friend = 2;
+}
+
+message User {
+    string user = 1 [(.cloudstate.entity_key) = true];
+}
+
+message FriendsList {
+    repeated Friend friends = 1;
+}
+
+message Empty {
+}
+
+service Friends {
+    rpc Add(FriendRequest) returns (Empty);
+    rpc Remove(FriendRequest) returns (Empty);
+    rpc GetFriends(User) returns (FriendsList);
+}

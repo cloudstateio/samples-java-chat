@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -v
+
+DIR="$(dirname "$0")"
+. "${DIR}/config"
+
+# Create GKE cluster
+gcloud beta container clusters create $CLUSTER_NAME \
+  --zone $CLUSTER_ZONE \
+  --cluster-version $CLUSTER_MASTER_VERSION \
+  --machine-type $CLUSTER_NODE_MACHINE_TYPE \
+  --num-nodes $CLUSTER_START_NODE_SIZE \
+  --min-nodes $CLUSTER_START_NODE_SIZE \
+  --max-nodes $CLUSTER_MAX_NODE_SIZE \
+  --enable-ip-alias \
+  --enable-stackdriver-kubernetes \
+  --enable-autoscaling \
+  --enable-autorepair \
+  --scopes cloud-platform \
+  --metadata=application=cloudstate,owner=blublinsky
+
+# Credentials
+gcloud container clusters get-credentials $CLUSTER_NAME \
+    --zone $CLUSTER_ZONE
+
+# Cluster role binding
+kubectl create clusterrolebinding cluster-admin-binding \
+    --clusterrole=cluster-admin \
+    --user=$(gcloud config get-value core/account)
+
+# show nodes
+kubectl get nodes
