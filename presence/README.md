@@ -14,15 +14,17 @@ http://maven.apache.org/download.cgi
 
 ### Build the package and Docker image
 
+You need to specify your own Docker repository when building images. For example if your Docker hub name is justinhj you would do the following:
+
 ```
 mvn package
-mvn io.fabric8:docker-maven-plugin:0.26.1:build
+mvn -Ddocker.name=justinhj/java-presence io.fabric8:docker-maven-plugin:0.26.1:build
 ```
 
 ### Push the image
 
 ```
-mvn io.fabric8:docker-maven-plugin:0.26.1:push
+mvn -Ddocker.name=justinhj/java-presence io.fabric8:docker-maven-plugin:0.26.1:push
 ```
 
 ### Basic Testing
