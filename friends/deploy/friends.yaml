@@ -5,5 +5,5 @@ metadata:
   name: friends
 spec:
   containers:
-  - image: justinhj/java-friends:latest
+  - image: cloudstateio/java-friends:latest
     name: friends

@@ -32,7 +32,7 @@
     <jetty.alpn.agent.version>2.0.10</jetty.alpn.agent.version>
     <grpc.version>1.29.0</grpc.version>
     <project.encoding>UTF-8</project.encoding>
-    <docker.name>justinhj/java-friends</docker.name>
+    <docker.name>cloudstateio/java-friends</docker.name>
   </properties>
 
   <dependencies>

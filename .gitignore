@@ -1,2 +1,6 @@
 target
 dependency-reduced-pom.xml
+.classpath
+.factorypath
+.project
+.settings/
