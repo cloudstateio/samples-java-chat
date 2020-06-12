@@ -4,8 +4,9 @@ import "cloudstate/entity_key.proto";
 
 package cloudstate.samples.chat.presence;
 
-option java_package = "io.cloudstate.samples.chat.presence";
-option java_outer_classname = "PresenceProtos";
+option java_multiple_files = true;
+option java_package = "cloudstate.samples.chat.presence.grpc";
+option java_outer_classname = "PresenceGrpc";
 
 message User {
     string name = 1 [(.cloudstate.entity_key) = true];

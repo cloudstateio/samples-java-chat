@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.cloudstate</groupId>
-  <artifactId>presence</artifactId>
+  <artifactId>friends</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
 
@@ -32,7 +32,7 @@
     <jetty.alpn.agent.version>2.0.10</jetty.alpn.agent.version>
     <grpc.version>1.29.0</grpc.version>
     <project.encoding>UTF-8</project.encoding>
-    <docker.name>cloudstateio/java-presence</docker.name>
+    <docker.name>cloudstateio/java-friends</docker.name>
   </properties>
 
   <dependencies>
@@ -166,7 +166,7 @@
                   <resource>reference.conf</resource>
                </transformer>
                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                <mainClass>io.cloudstate.samples.presence.Main</mainClass>
+                <mainClass>io.cloudstate.samples.friends.Main</mainClass>
               </transformer>
               </transformers>
             </configuration>

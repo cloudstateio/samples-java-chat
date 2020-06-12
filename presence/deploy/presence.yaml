@@ -1,0 +1,9 @@
+# Stateful service descriptor for the Chat Presence
+apiVersion: cloudstate.io/v1alpha1
+kind: StatefulService
+metadata:
+  name: presence
+spec:
+  containers:
+  - image: cloudstate.io/java-presence:latest
+    name: presence
