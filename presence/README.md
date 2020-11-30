@@ -2,7 +2,7 @@
 
 ## Chat Presence service - Java implementation
 
-This is an implementation of the presence service, which is part of Akka Serverless Chat sample.
+This is an implementation of the presence service, which is part of Cloudstate Chat sample.
 
 The user code is written in Java and uses a 100% Java toolchain (no Scala tools needed).
 
@@ -48,4 +48,3 @@ Repeat as many times as you feel like, watch the user count increase in the debu
 Now open a terminal to test the monitor call.
 
 `grpcurl -plaintext -d '{"name": "Alice"}' localhost:9000 cloudstate.samples.chat.presence.Presence/Monitor`
-
