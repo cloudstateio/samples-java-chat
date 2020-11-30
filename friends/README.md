@@ -2,7 +2,7 @@
 
 ## Friends service - Java implementation
 
-This is an implementation of the friends service, which is part of Lightbend Cloudstate Chat sample.
+This is an implementation of the friends service, which is part of Cloudstate Chat sample.
 
 The user code is written in Java and uses a 100% Java toolchain (no Scala tools needed).
 
